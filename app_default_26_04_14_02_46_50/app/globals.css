@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bt-cream: #FDFBF7;
+  --bt-white: #FFFFFF;
+  --bt-gold: #D4AF37;
+  --bt-gold-soft: #E5C992;
+  --bt-charcoal: #1A1A1A;
+  --bt-glass: rgba(255, 255, 255, 0.7);
+  --bt-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+@layer base {
+  body {
+    @apply bg-bt-cream text-bt-charcoal overflow-x-hidden;
+  }
+  
+  h1, h2, h3 {
+    @apply font-serif font-light tracking-tight;
+  }
+}
+
+.bt-glass-header {
+  @apply sticky top-0 z-[1000] bg-bt-glass backdrop-blur-[15px] border-b border-black/5 transition-all duration-500;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.animate-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee Logic */
+.bt-marquee-track {
+  display: flex;
+  width: fit-content;
+  animation: smoothScroll 60s linear infinite;
+}
+
+.bt-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes smoothScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.bt-product-card {
+  @apply w-[320px] mx-[15px] md:mx-[30px] bg-bt-white rounded-[20px] p-5 shadow-[var(--bt-shadow)] transition-transform duration-700 ease-[cubic-bezier(0.165,0.84,0.44,1)];
+}
+
+.bt-product-card:hover {
+  @apply -translate-y-2.5;
+}
+
+.bt-btn-atc {
+  @apply w-full mt-4 py-3 border border-bt-charcoal text-xs tracking-widest font-semibold hover:bg-bt-charcoal hover:text-bt-white transition-colors duration-300;
+}
